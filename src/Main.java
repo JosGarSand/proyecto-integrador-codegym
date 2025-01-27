@@ -7,7 +7,7 @@ public class Main {
         Cipher.encriptar( mensaje, 3 );
 
         /**El metodo main solo debe ejecutar menú, debe hacerse limpieza de lo demás**/
-
+        /**Nuevo comentario para mostrar cambios *borrar* **/
         //FileManager.writeFile();
         //new Cipher();
         //Menu.iniciarPrograma();
