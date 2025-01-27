@@ -1,0 +1,2 @@
+public class FuerzaBruta {
+}

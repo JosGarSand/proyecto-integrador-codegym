@@ -8,14 +8,16 @@ public class Cipher {
     public Cipher() {
         System.out.println( "Ingrese la clave de encriptacion: " );
         Scanner claveEncript = new Scanner( System.in );
-
+        int clave = claveEncript.nextInt();
+        if (clave < 0) {
+            throw new NumeroNegativoException( "El numero ingresado debe ser positivo" );
+        }
     }
 
     public static String encriptar(String MensajeCifrado, int clave) {
         //Esto funciona para recorrer la ubicacion del alfabeto, no asigna las ubicaciones ni valores nuevos
         char[] nuevoAlfabeto = new char[26];
         for (int u = 0; u < alfabeto.length; u++) {
-
 
             //TODO agregar excepcion para manejo de numeros negativos
             int nuevaPosicion = (u + clave - 1) % alfabeto.length;
@@ -27,9 +29,7 @@ public class Cipher {
             //   System.out.println( Arrays.toString( nuevoAlfabeto ).toUpperCase() );
         }
 
-
         /**Lo de arriba es para ver que funcione el nuevo alfabeto**/
-
         //Aquí deberían asignarse las nuevas posiciones a las letras del mensaje que se ingresa
 
         char[] mensajeEnChar = MensajeCifrado.toCharArray();
@@ -48,14 +48,14 @@ public class Cipher {
         System.out.println( mensajeYaEncriptado );
 
         return MensajeCifrado;
+
     }
 
-    //for (int i = 0; i < MensajeCifrado.length(); i++) {
-    // alfabeto[i] = (alfabeto[i] + clave);
-    //  System.out.println(alfabeto[i]);
-    //}
+    public static String desencriptar(String mensajeCifrado) {
 
-    // return null;
+        return mensajeCifrado;
+    }
+
 }
 
 

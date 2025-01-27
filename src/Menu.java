@@ -19,6 +19,8 @@ public class Menu {
                     case 1 -> {
                         System.out.println( "Ha seleccionado encriptar un mensaje" );
                         opcionValida = true;
+                        //FileManager.readFile();
+
 
                     }
                     case 2 -> {
