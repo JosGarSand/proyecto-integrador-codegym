@@ -12,18 +12,18 @@ public class FileManager {
             System.out.println( documentoporCifrar + " Se ha creado el documento. Escriba su mensaje en el documento" );
         }
         String mensaje = Files.readString( documentoporCifrar.toPath() );
-        System.out.println( mensaje );
+        //System.out.println( mensaje );
 
         return mensaje.toUpperCase();
     }
 
     public static String writeFile(String mensajeFinal) throws IOException {
-        File documentoCifrado = new File( "MensajeCifrado.txt" );
+        File documentoCifrado = new File( "Mensaje Cifrado.txt" );
         if (documentoCifrado.createNewFile()) {
             System.out.println( documentoCifrado + "Se ha creado el documento cifrado" );
         }
         try {
-            FileWriter writer = new FileWriter( "MensajeCifrado.txt" );
+            FileWriter writer = new FileWriter( "Mensaje Cifrado.txt" );
             writer.write( mensajeFinal );
             writer.close();
 
@@ -33,6 +33,7 @@ public class FileManager {
         }
         return null;
     }
+
 
 }
 

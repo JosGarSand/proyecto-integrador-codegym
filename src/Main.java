@@ -3,11 +3,9 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        FileManager.readFile();
-        String mensaje = FileManager.readFile();
-        Scanner scanner = new Scanner(System.in);
-        int clave = scanner.nextInt();
-
+        /**Migrar este a la clase menu y verificar la funcionalidad**/
+        //Cipher.encriptar( FileManager.readFile(), Cipher.clave());
+        Menu.iniciarPrograma();
 
         /**El metodo main solo debe ejecutar menú, debe hacerse limpieza de lo demás**/
         /**Nuevo comentario para mostrar cambios *borrar* **/

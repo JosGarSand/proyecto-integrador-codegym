@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -19,7 +20,9 @@ public class Menu {
                     case 1 -> {
                         System.out.println( "Ha seleccionado encriptar un mensaje" );
                         opcionValida = true;
-                        //FileManager.readFile();
+                        //Cipher.encriptar( FileManager.readFile(), Cipher.clave() );
+                        String mensajeAhoraSiFinal = Cipher.encriptar( FileManager.readFile(), Cipher.clave() );
+                        FileManager.writeFile( mensajeAhoraSiFinal );
 
 
                     }
@@ -46,6 +49,8 @@ public class Menu {
             } catch (InputMismatchException e) {
                 System.out.println( "Error: necesita ingresar un numero en el menú. Intente nuevamente." );
                 entrada.nextLine();
+            } catch (IOException e) {
+                throw new RuntimeException( e );
             }
         }
     }

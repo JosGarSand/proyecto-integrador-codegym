@@ -5,13 +5,14 @@ public class Cipher {
     private static final char[] alfabeto = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
     private String MensajeCifrado = " ";
 
-    public Cipher() {
+    public static int clave() {
         System.out.println( "Ingrese la clave de encriptacion: " );
         Scanner claveEncript = new Scanner( System.in );
         int clave = claveEncript.nextInt();
         if (clave < 0) {
             throw new NumeroNegativoException( "El numero ingresado debe ser positivo" );
         }
+        return clave;
     }
 
     public static String encriptar(String MensajeCifrado, int clave) {
@@ -42,12 +43,13 @@ public class Cipher {
             }
 
             mensajeEncriptado[i] = nuevoAlfabeto[ubicacion];
-            System.out.println( mensajeEncriptado[i] );
+            //Este de abajo es el mensaje encriptado posición por posición, sirve como referencia unicamente, no se imprimirá en la versión final
+            //System.out.println( mensajeEncriptado[i] );
         }
         String mensajeYaEncriptado = String.valueOf( mensajeEncriptado );
         System.out.println( mensajeYaEncriptado );
 
-        return MensajeCifrado;
+        return mensajeYaEncriptado;
 
     }
 
