@@ -18,10 +18,18 @@ public class Menu {
                 int opcion = entrada.nextInt();
                 switch (opcion) {
                     case 1 -> {
+
                         System.out.println( "Ha seleccionado encriptar un mensaje" );
                         opcionValida = true;
                         //Cipher.encriptar( FileManager.readFile(), Cipher.clave() );
-                        String mensajeAhoraSiFinal = Cipher.encriptar( FileManager.readFile(), Cipher.clave() );
+                        //Agregar nextline para capturar el archivo que se desea encriptar
+                        //Agregar impresión de solicitud
+                        System.out.println( "Por favor ingresa el nombre del archivo que deseas encriptar: " );
+                        String fileContent = FileManager.readFile( entrada.nextLine() );
+                        System.out.println( "Ingrese la clave de encriptacion: " );
+                        int clave = entrada.nextInt();
+                        /**Llamar al validador, pero dentro de la clase encriptar**/
+                        String mensajeAhoraSiFinal = Cipher.encriptar( fileContent, clave );
                         FileManager.writeFile( mensajeAhoraSiFinal );
 
 
@@ -29,6 +37,11 @@ public class Menu {
                     case 2 -> {
                         System.out.println( "Ha seleccionado desencriptar un mensaje" );
                         opcionValida = true;
+                        System.out.println( "Ingrese la clave de desencriptado" );
+                        //String mensajeDesencriptado = Cipher.encriptar(Cipher.encriptar(FileManager.readFile(), Cipher.clave() ), Cipher.clave());
+                        /**String mensajeDesencriptado = Cipher.desencriptar( mensajeADescifrar, Cipher.clave() );**/
+                        //System.out.println(mensajeDesencriptado);
+                        //Cipher.desencriptar( FileManager.readFile() )
 
                     }
                     case 3 -> {
@@ -54,4 +67,6 @@ public class Menu {
             }
         }
     }
+    //private encryptFileContent(){
+
 }
