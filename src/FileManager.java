@@ -7,7 +7,6 @@ public class FileManager {
     public static String readFile(String fileName) throws IOException {
         File documentToCipher = new File( fileName );
         String mensaje = Files.readString( documentToCipher.toPath() );
-
         return mensaje.toUpperCase();
     }
 

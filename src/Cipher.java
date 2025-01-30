@@ -2,11 +2,11 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Cipher {
-    private static final char[] alphabet = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+    static final char[] alphabet = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
     private final String cipheredMessage = " ";
 
     public static int key() {
-        System.out.println( "Ingrese la clave de encriptacion: " );
+        System.out.println(ANSI.ANSI_BLUE + "Ingrese la clave de encriptacion: " + ANSI.ANSI_RESET);
         Scanner claveEncript = new Scanner( System.in );
         int key = claveEncript.nextInt();
         return key;
@@ -27,24 +27,17 @@ public class Cipher {
         }
 
         char[] encryptedMessage = new char[mensajeCifrado.length()];
-        //StringBuilder cipherMessage = new StringBuilder();
         for (int i = 0; i < mensajeCifrado.length(); i++) {
             int ubicacion = Arrays.binarySearch( alphabet, mensajeCifrado.charAt( i ) );
             if (ubicacion < 0) {
                 encryptedMessage[i] = mensajeCifrado.charAt( i );
-                //cipherMessage.append( mensajeCifrado.charAt( i ));
                 continue;
             }
 
             encryptedMessage[i] = newAlphabet[ubicacion];
-            // cipherMessage.append( newAlphabet[ubicacion]);
-            //Este de abajo es el mensaje encriptado posición por posición, sirve como referencia unicamente, no se imprimirá en la versión final
-            //System.out.println( encryptedMessage[i] );
         }
-        //encryptedMessage.toString();
         String mensajeYaEncriptado = String.valueOf( encryptedMessage );
-        System.out.println( "Este es su mensaje " + mensajeYaEncriptado );
-        //System.out.println( "Se ha creado un nuevo archivo con su mensaje encriptado" );
+        System.out.println(ANSI.ANSI_GREEN + "Este es su mensaje: " + ANSI.ANSI_RESET + mensajeYaEncriptado);
 
         return mensajeYaEncriptado;
 
@@ -52,7 +45,6 @@ public class Cipher {
 
     public static String desencriptar(String mensajeCifrado, int clave) {
         String mensajeDesencriptado = encriptar( mensajeCifrado, - clave );
-        //System.out.println( mensajeDesencriptado );
         return mensajeDesencriptado;
 
     }
