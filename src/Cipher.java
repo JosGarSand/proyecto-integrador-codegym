@@ -2,60 +2,51 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Cipher {
-    private static final char[] alfabeto = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
-    private String MensajeCifrado = " ";
+    static final char[] alphabet = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+    private final String cipheredMessage = " ";
 
-    public Cipher() {
-        System.out.println( "Ingrese la clave de encriptacion: " );
+    public static int key() {
+        System.out.println(ANSI.ANSI_BLUE + "Ingrese la clave de encriptacion: " + ANSI.ANSI_RESET);
         Scanner claveEncript = new Scanner( System.in );
-
+        int key = claveEncript.nextInt();
+        return key;
     }
 
-    public static String encriptar(String MensajeCifrado, int clave) {
-        //Esto funciona para recorrer la ubicacion del alfabeto, no asigna las ubicaciones ni valores nuevos
-        char[] nuevoAlfabeto = new char[26];
-        for (int u = 0; u < alfabeto.length; u++) {
+    public static String encriptar(String mensajeCifrado, int key) {
+        char[] newAlphabet = new char[26];
+        for (int u = 0; u < alphabet.length; u++) {
 
-
-            //TODO agregar excepcion para manejo de numeros negativos
-            int nuevaPosicion = (u + clave - 1) % alfabeto.length;
-            if (nuevaPosicion > 25) {
-                nuevaPosicion = nuevaPosicion - 25;
+            int newPosition = (u + key ) % alphabet.length;
+            if (newPosition > 25) {
+                newPosition = (newPosition - 25);
             }
-            nuevoAlfabeto[nuevaPosicion] = alfabeto[u];
 
-            //   System.out.println( Arrays.toString( nuevoAlfabeto ).toUpperCase() );
+            newPosition = (newPosition + alphabet.length) % alphabet.length;
+            newAlphabet[newPosition] = alphabet[u];
+
         }
 
-
-        /**Lo de arriba es para ver que funcione el nuevo alfabeto**/
-
-        //Aquí deberían asignarse las nuevas posiciones a las letras del mensaje que se ingresa
-
-        char[] mensajeEnChar = MensajeCifrado.toCharArray();
-        char[] mensajeEncriptado = new char[mensajeEnChar.length];
-        for (int i = 0; i < mensajeEnChar.length; i++) {
-            int ubicacion = Arrays.binarySearch( alfabeto, mensajeEnChar[i] );
+        char[] encryptedMessage = new char[mensajeCifrado.length()];
+        for (int i = 0; i < mensajeCifrado.length(); i++) {
+            int ubicacion = Arrays.binarySearch( alphabet, mensajeCifrado.charAt( i ) );
             if (ubicacion < 0) {
-                mensajeEncriptado[i] = mensajeEnChar[i];
+                encryptedMessage[i] = mensajeCifrado.charAt( i );
                 continue;
             }
 
-            mensajeEncriptado[i] = nuevoAlfabeto[ubicacion];
-            System.out.println( mensajeEncriptado[i] );
+            encryptedMessage[i] = newAlphabet[ubicacion];
         }
-        String mensajeYaEncriptado = String.valueOf( mensajeEncriptado );
-        System.out.println( mensajeYaEncriptado );
+        String mensajeYaEncriptado = String.valueOf( encryptedMessage );
+        System.out.println(ANSI.ANSI_GREEN + "Este es su mensaje: " + ANSI.ANSI_RESET + mensajeYaEncriptado);
 
-        return MensajeCifrado;
+        return mensajeYaEncriptado;
+
     }
 
-    //for (int i = 0; i < MensajeCifrado.length(); i++) {
-    // alfabeto[i] = (alfabeto[i] + clave);
-    //  System.out.println(alfabeto[i]);
-    //}
+    public static String desencriptar(String mensajeCifrado, int clave) {
+        String mensajeDesencriptado = encriptar( mensajeCifrado, - clave );
+        return mensajeDesencriptado;
 
-    // return null;
+    }
+
 }
-
-
